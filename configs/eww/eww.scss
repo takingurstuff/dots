@@ -1,0 +1,127 @@
+@import 'colors';
+
+.player_status {
+  background-color: transparent;
+  // font-family: "JetBrains Mono Nerd Font";
+  // font-family: "Fira Code";
+  color: $foreground;
+}
+
+.time_window {
+  font-family: "Cybernex";
+  background-color: transparent;
+}
+
+.album_art_display {
+  padding: 7px;
+  margin: 0 7px 5px 0;
+  /* 1. The "Leading Edge": Strongest highlight on the top and left */
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  
+  /* 2. The "Receding Edge": Darker, more saturated teal/black on bottom/right */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+
+  /* 3. The Contact Shadow: This is critical for the "on top" look */
+  /* It casts a shadow onto the black bottom pane */
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 7px;
+  background-color: rgba($color1, 0.3);
+}
+
+.stat_stack {
+  margin: 0 5px 5px 0;
+  padding: 10px 15px 0 10px;
+  /* 1. The "Leading Edge": Strongest highlight on the top and left */
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  
+  /* 2. The "Receding Edge": Darker, more saturated teal/black on bottom/right */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+
+  /* 3. The Contact Shadow: This is critical for the "on top" look */
+  /* It casts a shadow onto the black bottom pane */
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 7px;
+  background-color: rgba($color1, 0.2);
+}
+
+.total_box {
+  background-color: rgba($color0, 0.1);
+  padding: 9px 4px 5px 9px;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);  /* Light catching the top edge */
+  border-left: 2px solid rgba(255, 255, 255, 0.08); /* Fainter light on the side */
+  border-right: 2px solid rgba(0, 0, 0, 0.4);       /* Deep shadow on the opposite edge */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+
+  border-radius: 12px;
+}
+
+.title {
+  font-size: 15px;
+}
+
+.artist {
+  font-size: 11px;
+}
+
+.progress {
+  margin: 0 5px 0 ;
+}
+
+/* The background/track of the bar */
+.progress trough {
+  background-color: $color0;
+  border-radius: 8px;
+  border-color: transparent;
+}
+
+.progress progress {
+  background-color: $color1; 
+  background-image: none;
+  border-radius: 8px;
+  border-color: transparent;
+}
+
+.time_display {
+  font-size: 110px;
+  margin-top: 20px;
+  // font-weight: bold;
+}
+
+.weekday_display {
+  font-size: 50px;
+  margin-top: 5px;
+}
+
+.date_display {
+  margin-top: 20px;
+  font-size: 40px;
+}
+
+.datetime {
+  background-color: rgba($color0, 0.2);
+  padding: 9px 4px 5px 9px;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);  /* Light catching the top edge */
+  border-left: 2px solid rgba(255, 255, 255, 0.08); /* Fainter light on the side */
+  border-right: 2px solid rgba(0, 0, 0, 0.4);       /* Deep shadow on the opposite edge */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  color: $foreground;
+}
+
+.activate-linux {
+  color: rgba(250, 250, 250, 0.5);
+
+  &.background {
+    background: none;
+  }
+}
+
+.the_button {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}

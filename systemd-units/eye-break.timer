@@ -1,0 +1,10 @@
+[Unit]
+Description=Take a break every 50 minutes
+
+[Timer]
+OnBootSec=50min
+OnUnitInactiveSec=50min
+Persistent=false
+
+[Install]
+WantedBy=timers.target

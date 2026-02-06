@@ -1,0 +1,19 @@
+[globals]
+# the server socket file, the server will listen here for clients
+socket_path = '/tmp/mpris.sock'
+
+# additional module directories, the server will locate directories here first, then in the distribution module directory
+# meaning that modules placed here with the same name as distribution module would override it
+plugin_paths = ['~/.config/mpris-drpc/plugins']
+
+# The server has discord rich presence support, enable this flag to use it
+discord_rpc = false
+
+[ruleset]
+# You can add your own rulesets to trigger metadata preprocessing here, the key follows the Rule expression syntax, and requires escaping. 
+# The value is the callable method, following format `module.metghod(args, kwargs), remeber that internally these functions receive an implicit first argument being the metadata dictonary
+"|| xesam:url <-> __contains__('nicovideo,jp') ||" = 'nnd.nnd_handler()' # Handle niconico urls with yt-dlp assistance to get arturl and the uploader (requires yt-dlp)
+
+
+[drpc]
+# Keys under this section only come into effect when `discord_rpc` is true, as these are rich presence options

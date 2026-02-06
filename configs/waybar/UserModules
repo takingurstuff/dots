@@ -1,0 +1,103 @@
+//* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
+/* Waybar Modules Extras */
+
+/* This is where you can add Extra Modules you wish. copy.sh will try to restore*/
+/* this file along with the unique configs and styles. */
+/* IMPORTANT, be mindful with , or ". else waybar will not start */
+
+{
+    "custom/playerctl-poly": {
+        "format": "{}",
+        "return-type": "plaintext",
+        // "exec": "$HOME/.config/hypr/UserScripts/playerctl.sh",
+        // "exec": "$HOME/mpris-drpc/uhh.sh",
+        "exec": "python3 /home/talent/services/mpris-drpc/client.py --name BAR --interval 0.1",
+        "on-click-middle": "wl-copy $(playerctl metadata xesam:title || echo '') && notify-send 'copied track title'",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl position 0",
+        "scroll-step": 1.0,
+        "on-scroll-up": "playerctl position 1+",
+        "on-scroll-down": "playerctl position 1-",
+        "smooth-scrolling-threshold": 1,
+		"class": "playerctl",
+		"escape": true,
+    },
+    "custom/gpu": {
+        "exec": "radeontop -l 1 -d - | grep gpu | sed -E 's/.*gpu ([0-9]+(\\.[0-9]+)?)%.*/\\1%/g; s/\\.[0-9]+//g' || echo 'NaN%'",
+        "interval": 1,
+        "format": "GPU {}",
+        "tooltip": false,
+        "class": "gpu"
+    },
+	"custom/breaktime": {
+        "exec": "~/bin/til_next_break eye-break.timer",
+        "format": "BREAK {}",
+        "tooltip": false,
+        "class": "breaktime"
+    },
+    "temperature#cpu": {
+	    "interval": 1,
+	    "tooltip": true,
+	    "hwmon-path": [
+	    	"/sys/class/hwmon/hwmon3/temp1_input",
+	    ],
+	    //"thermal-zone": 0,
+	    "critical-threshold": 80,
+	    "format-critical": "T-CPU {temperatureC}°C CRIT",
+	    "format": "T-CPU {temperatureC}°C",
+	    "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nvtop"
+    },
+	"temperature#compartment": {
+	    "interval": 1,
+	    "tooltip": true,
+	    "hwmon-path": [
+	    	"/sys/class/hwmon/hwmon1/temp1_input",
+	    ],
+	    //"thermal-zone": 0,
+	    "critical-threshold": 75,
+	    "format-critical": "T-CMP {temperatureC}°C CRIT",
+	    "format": "T-CMP {temperatureC}°C",
+	    "on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nvtop"
+    },
+
+    "network#speed": {
+	    "interval": 1,
+	    "format": "NET  {bandwidthUpBytes}  {bandwidthDownBytes}",
+	    "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+	    "format-ethernet": "NET  {bandwidthUpBytes}  {bandwidthDownBytes}",
+	    "format-disconnected": "󰌙",
+	    "tooltip-foFrmat": "{ipaddr}",
+	    "format-linked": "󰈁 {ifname} (No IP)",
+	    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+	    "tooltip-format-ethernet": "{ifname} 󰌘",
+	    "tooltip-format-disconnected": "󰌙 Disconnected",
+	    "min-length": 24,
+	    "max-length": 30,
+	    "format-icons": [
+	    	"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+	    ]
+    },
+
+	"cpu": {
+		"format": "CPU {usage}%",
+		"interval": 1,
+		"min-length": 5,
+		"format-alt-click": "click",
+		"format-alt": "CPU {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+		"format-icons": [
+			"▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
+		],
+		"on-click-right": "gnome-system-monitor",
+	},
+
+	"memory": {
+		"interval": 10,
+		"format": "RAM {used:0.1f}G",
+		"format-alt": "RAM {percentage}%",
+		"format-alt-click": "click",
+		"tooltip": true,
+		"tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
+		"on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --btop"
+	},
+
+}

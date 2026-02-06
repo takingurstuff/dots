@@ -1,0 +1,2 @@
+--extractor-args "youtubepot-bgutilhttp:base-url=http://127.0.0.1:5656"
+--extractor-args "youtube:player-client=default,mweb"

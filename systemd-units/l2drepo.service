@@ -1,0 +1,13 @@
+[Unit]
+Description=Live2d Model Repository service, FOR THE LOLIS
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/php -S localhost:23456 /home/talent/services/live2d_api/router.php
+User=talent
+Group=talent
+WorkingDirectory=/home/talent/services/live2d_api
+
+[Install]
+WantedBy=default.target

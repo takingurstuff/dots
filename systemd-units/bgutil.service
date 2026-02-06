@@ -1,0 +1,12 @@
+[Unit]
+Description=yt-dlp PO Token server
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node %h/services/bgutil-ytdlp-pot-provider/server/build/main.js -p 5656
+Restart=on-failure
+WorkingDirectory=/home/talent/bgutil-ytdlp-pot-provider/server
+
+[Install]
+WantedBy=default.target

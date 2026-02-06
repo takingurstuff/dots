@@ -1,0 +1,50 @@
+// Emulate my old polybar config
+
+{
+    "include": [
+      "$HOME/.config/waybar/Modules",
+      "$HOME/.config/waybar/ModulesWorkspaces",
+      "$HOME/.config/waybar/ModulesCustom",
+      "$HOME/.config/waybar/ModulesGroups",
+      "$HOME/.config/waybar/UserModules",
+      ],
+    "layer": "top",
+    "position": "top",
+    "output": "HDMI-A-1",
+    "height": 30,
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-top": 2,
+
+    "modules-left": [
+        "custom/cava_mviz",
+        "custom/separator#blank_2",
+        "custom/playerctl-poly",
+        "custom/separator#blank_2",
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces",
+        "clock",
+        "custom/breaktime",
+        "custom/swaync",
+    ],
+
+    "modules-right": [
+        "custom/separator#blank_2",
+        "cpu",
+        "custom/separator#blank_2",
+        "custom/gpu",
+        "custom/separator#blank_2",
+        "temperature#cpu",
+        "custom/separator#blank_2",
+        "temperature#compartment",
+        "custom/separator#blank_2",
+        "memory",
+        "custom/separator#blank_2",
+        "network#speed",
+        "custom/separator#blank_2",
+        "pulseaudio",			
+    ],
+    }
+    

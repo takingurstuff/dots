@@ -1,0 +1,7 @@
+[Unit]
+Description=Eye break notification and media pause
+
+[Service]
+Type=simple
+# Only pause media and show dialog if hyprlock is NOT running
+ExecStart=/bin/bash -c "if ! pgrep -x hyprlock > /dev/null; then /usr/bin/playerctl pause; /usr/bin/yad --title='Eye Break' --text='GO TAKE A BREAK IDIOT' --timeout=600 --timeout-indicator=top --center --width=300 --no-buttons; /usr/bin/yad --title='Eye Break' --text='Break over. Get back to work.' --button='Ima back':0 --center; fi"

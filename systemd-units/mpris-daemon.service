@@ -1,0 +1,12 @@
+[Unit]
+Description=A service that sits atop mpris, and processes its metadata
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/talent/services/mpris-drpc/main.py
+Restart=on-failure
+WorkingDirectory=/home/talent/services/mpris-drpc
+
+[Install]
+WantedBy=default.target

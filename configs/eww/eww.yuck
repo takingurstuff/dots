@@ -1,0 +1,199 @@
+(defwindow player_status
+  :monitor "HDMI-A-1"
+  :geometry (geometry :x "0.5%"
+    :y "1%"    
+    :width "670px"
+    :height "128px"
+  :anchor "top right")
+  :stacking "fg"
+  :exclusive false
+  :focusable "none"
+  :namespace "eww_blur"
+  (total_box))
+
+(defwindow time_window
+  :monitor "HDMI-A-1"
+  :geometry (geometry :x "2%"
+    :y "2%"
+    :width "550px"
+    :height "256px"
+  :anchor "bottom right")
+  :stacking "fg"
+  :exclusive false
+  :focusable "None"
+  :namespace "eww_blur"
+  (datetime))
+
+(deflisten player_info_json :initial '{"prog": 0, "arturl": "./icons/transparent_image.png", "player_found": false}'
+; `/home/talent/.config/hypr/UserScripts/playerctl.sh -j`)
+'python3 /home/talent/services/mpris-drpc/client.py --name EWW --interval 0.1 --for-panel True')
+
+(deflisten time_json :initial '{}'
+  `/home/talent/.config/hypr/UserScripts/timenow.sh`
+)
+
+(defwidget album_art []
+  (image :path {player_info_json.arturl}
+    :class 'album_art_display'
+    :preserve-aspect-ratio true
+    :image-height 128
+  ))
+
+
+(defwidget progress_bar []
+  (progress :value {player_info_json.prog}
+    :class 'progress'
+    :valign "center"
+    :hexpand true
+    :width 250
+    :orientation "h"
+  ))
+
+; (defwidget progress_bar []
+;   (scale :value {player_info_json.prog}
+;     :class 'progress'
+;     :valign "center"
+;     :hexpand true
+;     :width 250
+;     :orientation "h"
+;     :onchange 'playerctl position $(bc -l <<< "({} / 100) * ($(playerctl metadata mpris:length) / 1000000)")'
+;   ))
+
+(defwidget title []
+  (label :markup {player_info_json.title}
+    :class 'title'
+    :truncate false
+    :xalign 0.5
+    :yalign 0.5
+    :valign "center"
+    :wrap true
+    ; :limit-width 80
+  )
+)
+
+(defwidget artist []
+  (label :markup {player_info_json.artist}
+    :class 'artist'
+    :truncate false
+    :xalign 0.5
+    :valign "center"
+    :wrap true
+    :hexpand true
+  )
+)
+
+(defwidget pos []
+  (label :text '${player_info_json.pos} : ${player_info_json.dur}'
+    :class 'position'
+    :truncate false
+    :xalign 0.5
+    :yalign 0.42
+    :wrap true
+    :limit-width 50
+  )
+)
+
+(defwidget stat []
+  ; (button :onclick "playerctl play-pause"
+  ;   :class 'the_button'
+  ;   (image :path {player_info_json.status}
+  ;     :class 'play_pause'
+  ;     :image-height 32
+  ;     :preserve-aspect-ratio true
+  ;     :fill-svg "white"
+  ;   )
+  ; )
+  (image :path {player_info_json.status}
+    :class 'play_pause'
+    :image-height 32
+    :preserve-aspect-ratio true
+    :fill-svg "white"
+  )
+)
+
+(defwidget bar []
+  (box :spacing 0
+    :class 'indicator_bar'
+    :orientation "h"
+    :space-evenly false
+    ; :hexpand true
+    (stat)
+    (progress_bar)
+    (pos)
+  )
+)
+
+(defwidget stat_stack []
+  (box :spacing 0
+    :class 'stat_stack'
+    :orientation "v"
+    ; :space-evenly false
+    :hexpand true
+    (title)
+    (artist)
+    (bar)
+  )
+)
+
+
+(defwidget total_box []
+  (box :spacing 0
+    :class 'total_box'
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    (album_art)
+    (stat_stack)
+  )
+)
+
+
+(defwidget time []
+  (label :text '${time_json.hour}:${time_json.minute}:${time_json.second}'
+    :class 'time_display'
+    :valign 'center'
+    :xalign 0.5
+  )
+)
+
+(defwidget date []
+  (label :text '${time_json.month} ${time_json.day} ${time_json.year}'
+    :class 'date_display'
+    :valign 'center'
+    :xalign 0.5
+  )
+)
+
+(defwidget weekday []
+  (label :text '${time_json.weekday}'
+    :class 'weekday_display'
+    :valign 'center'
+    :xalign 0.5
+  )
+)
+
+(defwidget datetime []
+  (box :spacing 0
+    :class 'datetime'
+    :orientation "v"
+    :space-evenly false
+    (time)
+    (weekday)
+    (date)
+  )
+)
+
+; (defwidget activate-linux []
+;   (box
+;     :orientation "v"
+;     :halign "start"
+;     :valign "start"
+;     (label :xalign 0 :markup "<span font_size=\"large\">Activate Linux</span>")
+;     (label :xalign 0 :text "Go to Settings to activate Linux")))
+
+; (defwindow activate-linux
+;   :monitor 1
+;   :stacking "fg"
+;   :geometry (geometry :x "8px" :y "32px" :width "250px" :anchor "bottom right")
+;   (activate-linux))
+

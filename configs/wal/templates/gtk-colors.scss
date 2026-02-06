@@ -1,0 +1,58 @@
+// Procedural Gray Scale based on Wallpaper Luminance
+// We mix the background with white/black to create a "tinted" gray scale
+$base-bg: {background};
+$base-fg: {foreground};
+
+// Grey Scale: From "Almost White" to "Pitch Black"
+// Using mix ensures your greys aren't 'dead'—they are tinted by your wallpaper's tone
+$grey-050: mix(#ffffff, $base-bg, 98%);
+$grey-100: mix(#ffffff, $base-bg, 94%);
+$grey-150: mix(#ffffff, $base-bg, 90%);
+$grey-200: mix(#ffffff, $base-bg, 80%);
+$grey-250: mix(#ffffff, $base-bg, 70%);
+$grey-300: mix(#ffffff, $base-bg, 60%);
+$grey-350: mix(#ffffff, $base-bg, 50%);
+$grey-400: mix(#ffffff, $base-bg, 40%);
+$grey-450: mix(#ffffff, $base-bg, 30%);
+$grey-500: mix($base-fg, $base-bg, 50%); // The perfect mid-tone
+$grey-550: mix($base-bg, #000000, 10%);
+$grey-600: mix($base-bg, #000000, 20%);
+$grey-650: mix($base-bg, #000000, 30%);
+$grey-700: mix($base-bg, #000000, 40%); // Deep background
+$grey-750: mix($base-bg, #000000, 50%);
+$grey-800: mix($base-bg, #000000, 60%);
+$grey-850: mix($base-bg, #000000, 80%);
+$grey-900: mix($base-bg, #000000, 90%);
+$grey-950: mix($base-bg, #000000, 95%);
+
+// Semantic Colors (Standardized pywal slots)
+$red-light:    {color1};
+$red-dark:     {color9};
+$green-light:  {color2};
+$green-dark:   {color10};
+$yellow-light: {color3};
+$yellow-dark:  {color11};
+$blue-light:   {color4};
+$blue-dark:    {color12};
+$purple-light: {color5};
+$purple-dark:  {color13};
+$teal-light:   {color6};
+$teal-dark:    {color14};
+$orange-light: {color1}; // Wal usually combines orange/red
+$orange-dark:  {color9};
+$pink-light:   {color5};
+$pink-dark:    {color13};
+
+// Constants
+$white: #ffffff;
+$black: #000000;
+
+// Buttons & Accents (The "Rice" factors)
+$button-close: $red-light;
+$button-max:   $green-light;
+$button-min:   $yellow-light;
+$links:        $blue-light;
+
+// Theme Primary
+$default-light: {color4};
+$default-dark:  {color12};
